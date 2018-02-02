@@ -1,6 +1,6 @@
 <?php
 /**
- * Codelation Default Default functions and definitions
+ * Codelation Default functions and definitions
  *
  * Set up the theme and provides some helper functions, which are used in the
  * theme as custom template tags. Others are attached to action and filter
@@ -21,8 +21,8 @@
  * {@link https://codex.wordpress.org/Plugin_API}
  *
  * @package WordPress
- * @subpackage Codelation Default
- * @since Codelation Default 0.1
+ * @subpackage Codelation_Default
+ * @since Codelation_Default 0.1
  */
 
 /**
@@ -32,7 +32,7 @@ if ( version_compare( $GLOBALS['wp_version'], '4.4-alpha', '<' ) ) {
   require get_template_directory() . '/inc/back-compat.php';
 }
 
-if ( ! function_exists( 'Codelation Default_setup' ) ) :
+if ( ! function_exists( 'Codelation_Default_setup' ) ) :
 /**
  * Sets up theme defaults and registers support for various WordPress features.
  *
@@ -44,7 +44,7 @@ if ( ! function_exists( 'Codelation Default_setup' ) ) :
  *
  * @since Codelation Default 0.1
  */
-function Codelation Default_setup() {
+function Codelation_Default_setup() {
 
   // Add default posts and comments RSS feed links to head.
   add_theme_support( 'automatic-feed-links' );
@@ -78,42 +78,19 @@ function Codelation Default_setup() {
 
   // This theme uses wp_nav_menu() in two locations.
   register_nav_menus( array(
-    'primary' => __( 'Primary Menu', 'Codelation Default' ),
+    'primary' => __( 'Primary Menu', 'Codelation_Default' ),
   ) );
 
-  add_action( 'wp_enqueue_scripts', 'Codelation Default_enqueue_styles' );
+  add_action( 'wp_enqueue_scripts', 'Codelation_Default_enqueue_styles' );
 }
 
 endif; // Codelation Default_setup
 
-add_action('after_setup_theme', 'Codelation Default_setup');
+add_action('after_setup_theme', 'Codelation_Default_setup');
 
-function Codelation Default_enqueue_styles() {
+function Codelation_Default_enqueue_styles() {
   wp_enqueue_style( 'style', get_stylesheet_uri() );
 }
-
-function Codelation Default_the_custom_logo() {}
-
-function Codelation Default_body_classes( $classes ) {
-  // Adds a class of custom-background-image to sites with a custom background image.
-  if ( get_background_image() ) {
-    $classes[] = 'custom-background-image';
-  }
-
-  // Adds a class of group-blog to sites with more than 1 published author.
-  if ( is_multi_author() ) {
-    $classes[] = 'group-blog';
-  }
-
-  // Adds a class of hfeed to non-singular pages.
-  if ( ! is_singular() ) {
-    $classes[] = 'hfeed';
-  }
-
-  return $classes;
-}
-
-add_filter( 'body_class', 'Codelation Default_body_classes' );
 
 // Register Footer Menu
 register_nav_menus(
